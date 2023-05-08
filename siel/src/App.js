@@ -7,11 +7,7 @@ import Schedule from "./components/Schedule";
 import Filter from "./components/Filter";
 import AddGame from "./components/AddGame";
 import Home from "./components/Home";
-<<<<<<< HEAD
-=======
-import Games from "./components/Games"
-
->>>>>>> origin/main
+import Games from "./components/Games";
 function App() {
   const [games, setGames] = useState([]);
   const [filteredGames, setFilteredGames] = useState([]);
