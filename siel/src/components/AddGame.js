@@ -25,14 +25,16 @@ function AddGame({ onAddGame }) {
     };
 
     try {
-      const response = await fetch("http://localhost:8001/games", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(gameData),
-      });
-
+      const response = await fetch(
+        "http://localhost:3000/games",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newGame),
+        }
+      );
       if (response.ok) {
         const data = await response.json();
         onAddGame(data);

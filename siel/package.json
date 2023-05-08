@@ -14,11 +14,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "json-server --watch db.json -p 8001 & open http://localhost:3000/games & PORT=8000 react-scripts start && fg",
+    "start": "json-server --watch db.json -p 3000 & open http://localhost:3000/games & PORT=3000 react-scripts start && fg",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server --watch db.json -p 8001"
+    "server": "json-server --watch db.json -p 3000"
   },
   "eslintConfig": {
     "extends": [
