@@ -1,59 +1,60 @@
-import React, { useState } from "react";
+import { useState } from "react";
+function AddGame({ onAddGame }) {
+  const [gameNo, setGameNo] = useState("");
+  const [home, setHome] = useState("");
+  const [away, setAway] = useState("");
+  const [conference, setConference] = useState("");
+  const [day, setDay] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [court, setCourt] = useState("");
+  const [location, setLocation] = useState("");
 
-const AddGame = ({ onAddGame }) => {
-  const [gameData, setGameData] = useState({
-    gameNo: "",
-    home: "",
-    away: "",
-    conference: "",
-    day: "",
-    date: "",
-    time: "",
-    court: "",
-    location: "",
-  });
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setGameData((prevGameData) => ({
-      ...prevGameData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (event) => {
+  async function handleSubmit(event) {
     event.preventDefault();
+    const newGame = {
+      gameNo,
+      home,
+      away,
+      conference,
+      day,
+      date,
+      time,
+      court,
+      location,
+    };
 
     try {
-      const response = await fetch("http://localhost:3000/games", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(gameData),
-      });
-
+      const response = await fetch(
+        "http://localhost:3000/games",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newGame),
+        }
+      );
       if (response.ok) {
         const data = await response.json();
         onAddGame(data);
-        setGameData({
-          gameNo: "",
-          home: "",
-          away: "",
-          conference: "",
-          day: "",
-          date: "",
-          time: "",
-          court: "",
-          location: "",
-        });
+        setGameNo("");
+        setHome("");
+        setAway("");
+        setConference("");
+        setDay("");
+        setDate("");
+        setTime("");
+        setCourt("");
+        setLocation("");
       } else {
-        alert("Failed to add game");
+        //error
       }
     } catch (error) {
       console.error(error);
+      console.log(error.response);
     }
-  };
+  }
 
   return (
     <div className="AddGame">
@@ -63,87 +64,78 @@ const AddGame = ({ onAddGame }) => {
           Game Number:
           <input
             type="text"
-            name="gameNo"
-            value={gameData.gameNo}
-            onChange={handleChange}
+            value={gameNo}
+            onChange={(event) => setGameNo(event.target.value)}
           />
         </label>
         <label>
-          Home Team:
+          Home Team :
           <input
             type="text"
-            name="home"
-            value={gameData.home}
-            onChange={handleChange}
+            value={home}
+            onChange={(event) => setHome(event.target.value)}
           />
         </label>
         <label>
           Away Team:
           <input
             type="text"
-            name="away"
-            value={gameData.away}
-            onChange={handleChange}
+            value={away}
+            onChange={(event) => setAway(event.target.value)}
           />
         </label>
         <label>
           Conference:
           <input
             type="text"
-            name="conference"
-            value={gameData.conference}
-            onChange={handleChange}
+            value={conference}
+            onChange={(event) => setConference(event.target.value)}
           />
         </label>
         <label>
           Day:
           <input
             type="text"
-            name="day"
-            value={gameData.day}
-            onChange={handleChange}
+            value={day}
+            onChange={(event) => setDay(event.target.value)}
           />
         </label>
         <label>
           Date:
           <input
             type="text"
-            name="date"
-            value={gameData.date}
-            onChange={handleChange}
+            value={date}
+            onChange={(event) => setDate(event.target.value)}
           />
         </label>
         <label>
           Time:
           <input
             type="text"
-            name="time"
-            value={gameData.time}
-            onChange={handleChange}
+            value={time}
+            onChange={(event) => setTime(event.target.value)}
           />
         </label>
         <label>
           Court:
           <input
             type="text"
-            name="court"
-            value={gameData.court}
-            onChange={handleChange}
+            value={court}
+            onChange={(event) => setCourt(event.target.value)}
           />
         </label>
         <label>
           Location:
           <input
             type="text"
-            name="location"
-            value={gameData.location}
-            onChange={handleChange}
+            value={location}
+            onChange={(event) => setLocation(event.target.value)}
           />
         </label>
         <button type="submit">Add Game</button>
       </form>
     </div>
   );
-};
+}
 
 export default AddGame;

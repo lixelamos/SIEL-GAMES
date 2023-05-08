@@ -11,7 +11,7 @@ function Nav() {
         Games
       </Link>
       <Link to="/AddGame" id="AddGame-a">
-        Add game
+        Add Game
       </Link>
     </div>
   );
