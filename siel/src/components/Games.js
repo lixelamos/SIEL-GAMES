@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import GameCard from "./GameCard";
-//import Search from "./Search";
-import AddGame from "./AddGame";
+
+// Placeholder component for Search
+const Search = () => {
+  return <div></div>;
+};
 
 function Games() {
-const [games, setGames] = useState([]);
-const [filteredGames, setFilteredGames] = useState([]);
+  const [games, setGames] = useState([]);
+  const [filteredGames, setFilteredGames] = useState([]);
 
   useEffect(() => {
-    fetch(" http://localhost:8001/games")
+    fetch("http://localhost:3000/games")
       .then((response) => response.json())
       .then((data) => {
         setGames(data);
@@ -17,13 +20,13 @@ const [filteredGames, setFilteredGames] = useState([]);
       .catch((error) => console.log(error));
   }, []);
 
-function handleFilter(type) {
-const filteredGames = games.filter((game) => game[type]);
-setFilteredGames(filteredGames);
-}
+  function handleFilter(type) {
+    const filtered = games.filter((game) => game[type]);
+    setFilteredGames(filtered);
+  }
 
   function handleAddGame(newGame) {
-    fetch("http://localhost:8001/games", {
+    fetch("http://localhost:3000/games", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,10 +41,24 @@ setFilteredGames(filteredGames);
       .catch((error) => console.log(error));
   }
 
+  function deleteGame(gameId) {
+    fetch(`http://localhost:3000/games/${gameId}`, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Update the games and filteredGames state by removing the deleted game
+        const updatedGames = games.filter((game) => game.gameNo !== gameId);
+        setGames(updatedGames);
+        setFilteredGames(updatedGames);
+      })
+      .catch((error) => console.log(error));
+  }
+
   return (
     <div className="Games">
-      <h1> SIEL Basketball Schedule</h1>
-      {/* <Filter games={games} setFilteredGames={setFilteredGames} /> */}
+      <h1> SIEL Basketball Games</h1>
+      <Search games={games} setFilteredGames={setFilteredGames} />
       <div className="filters">
         <button onClick={() => handleFilter("day")}>Filter by Day</button>
         <button onClick={() => handleFilter("date")}>Filter by Date</button>
@@ -50,10 +67,9 @@ setFilteredGames(filteredGames);
       </div>
       <div className="games-container">
         {filteredGames.map((game) => (
-          <GameCard key={game.gameNo} game={game} />
+          <GameCard key={game.gameNo} game={game} onDelete={() => deleteGame(game.gameNo)} />
         ))}
       </div>
-      <AddGame handleAddGame={handleAddGame} />
     </div>
   );
 }

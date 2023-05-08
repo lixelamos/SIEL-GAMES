@@ -21,15 +21,16 @@ const Filter = ({ games }) => {
         onChange={handleSearch}
         placeholder="Search for a game"
       />
-      <div className="filteredResults">
-        {filteredGames.map((game) => (
-          <div>
-            <h4>
-              <span>{game.home}</span> vs <span>{game.away}</span>
-            </h4>
-          </div>
-        ))}
-      </div>
+    <div className="filteredResults">
+  {filteredGames.map((game) => (
+    <div key={game.id}>
+      <h4>
+        <span>{game.home}</span> vs <span>{game.away}</span>
+      </h4>
+    </div>
+  ))}
+</div>
+
     </div>
   );
 };
