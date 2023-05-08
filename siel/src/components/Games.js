@@ -59,12 +59,12 @@ function Games() {
     <div className="Games">
       <h1> SIEL Basketball Games</h1>
       <Search games={games} setFilteredGames={setFilteredGames} />
-      <div className="filters">
+      {/* <div className="filters">
         <button onClick={() => handleFilter("day")}>Filter by Day</button>
         <button onClick={() => handleFilter("date")}>Filter by Date</button>
         <button onClick={() => handleFilter("court")}>Filter by Court</button>
         <button onClick={() => handleFilter("time")}>Filter by Time</button>
-      </div>
+      </div> */}
       <div className="games-container">
         {filteredGames.map((game) => (
           <GameCard key={game.gameNo} game={game} onDelete={() => deleteGame(game.gameNo)} />
