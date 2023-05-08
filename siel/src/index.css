@@ -3,6 +3,7 @@
   padding: 0;
 }
 
+
 .Schedule{
   display: flex;
   justify-content: center;
@@ -80,6 +81,17 @@ input[type="tel"] {
   font-size: 20px;
 }
 
+<<<<<<< HEAD
+=======
+}
+.mainnav img{
+width: 30px;
+margin-right: 12px;
+}
+
+
+ 
+>>>>>>> origin/main
 .route-links{
   width: 100%;
 }
@@ -140,6 +152,7 @@ span{
 .emphasis{
   color: black;
   font-weight:bold;
+}
   .highlight {
     position: relative;
   }
@@ -154,7 +167,7 @@ span{
     background: yellow;
     z-index: -1;
   }
-}
+
 a{
   margin-right: 30px;
 }
