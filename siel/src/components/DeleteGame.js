@@ -1,8 +1,8 @@
 import React from "react";
 
 function DeleteGame({ home, onDelete }) {
-  function handleDelete() {
-    fetch(` http://localhost:3000/games ${home}`, {
+  function handleDeleteGame() {
+    fetch(`http://localhost:8001/games${home}`, {
       method: "DELETE",
     })
       .then(() => {
@@ -13,7 +13,7 @@ function DeleteGame({ home, onDelete }) {
 
   return (
     <div className="DeleteGame">
-      <button onClick={handleDelete}>Delete Game</button>
+      <button onClick={handleDeleteGame}>Delete Game</button>
     </div>
   );
 }

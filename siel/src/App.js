@@ -7,6 +7,7 @@ import Schedule from "./components/Schedule";
 import Filter from "./components/Filter";
 import AddGame from "./components/AddGame";
 import Home from "./components/Home";
+import Games from "./components/Games"
 
 function App() {
   const [games, setGames] = useState([]);
@@ -15,7 +16,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get(" http://localhost:3000/games")
+      .get("http://localhost:8001/games")
       .then((response) => {
         setGames(response.data);
         setFilteredGames(response.data);
@@ -48,7 +49,7 @@ function App() {
 
   function handleAddGame(newGame) {
     axios
-      .post(" http://localhost:3000/games", newGame)
+      .post("http://localhost:8001/games", newGame)
       .then((response) => {
         const updatedGames = [...games, response.data];
         setGames(updatedGames);
@@ -75,7 +76,7 @@ function App() {
                 <Route
                   path="/games"
                   element={
-                    <Schedule
+                    <Games
                       games={filteredGames}
                       setSelectedGame={setSelectedGame}
                       setFilteredGames={setFilteredGames}

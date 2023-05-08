@@ -1,12 +1,12 @@
 import React from "react";
 import DeleteGame from "./DeleteGame";
 
-function GameCard({ game, handleGameClick, handleGameDelete }) {
+function GameCard({ game, handleGameClick, handleDeleteGame }) {
   const { gameNo, home, away, conference, day, date, time, court, location } =
     game;
 
   function handleDelete() {
-    handleGameDelete(gameNo);
+    handleDeleteGame(gameNo);
   }
 
   return (
@@ -17,7 +17,7 @@ function GameCard({ game, handleGameClick, handleGameDelete }) {
       <p>
         <span>Game No: </span>
         {gameNo}
-      </p>
+        </p>
       <p>
         <span>Conference: </span>
         {conference}

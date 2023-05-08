@@ -26,7 +26,7 @@ function AddGame({ onAddGame }) {
 
     try {
       const response = await fetch(
-        "https://basketball-api.onrender.com/games",
+        "http://localhost:8001/games",
         {
           method: "POST",
           headers: {

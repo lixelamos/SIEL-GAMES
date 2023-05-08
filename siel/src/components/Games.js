@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import GameCard from "./GameCard";
-import Search from "./Search";
+import Filter from "./Filter";
 import AddGame from "./AddGame";
 
 function Games() {
@@ -8,7 +8,7 @@ function Games() {
   const [filteredGames, setFilteredGames] = useState([]);
 
   useEffect(() => {
-    fetch(" http://localhost:3000/games")
+    fetch(" http://localhost:8001/games")
       .then((response) => response.json())
       .then((data) => {
         setGames(data);
@@ -23,7 +23,7 @@ function Games() {
   }
 
   function handleAddGame(newGame) {
-    fetch(" http://localhost:3000/games", {
+    fetch("http://localhost:8001/games", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -41,7 +41,7 @@ function Games() {
   return (
     <div className="Games">
       <h1> SIEL Basketball Schedule</h1>
-      <Search games={games} setFilteredGames={setFilteredGames} />
+      {/* <Filter games={games} setFilteredGames={setFilteredGames} /> */}
       <div className="filters">
         <button onClick={() => handleFilter("day")}>Filter by Day</button>
         <button onClick={() => handleFilter("date")}>Filter by Date</button>
