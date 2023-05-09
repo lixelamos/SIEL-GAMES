@@ -24,7 +24,21 @@ function Games() {
     const filtered = games.filter((game) => game[type]);
     setFilteredGames(filtered);
   }
-
+ function handleAddGame(newGame) {
+    fetch("http://localhost:3000/games", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newGame),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setGames([...games, data]);
+        setFilteredGames([...games, data]);
+      })
+      .catch((error) => console.log(error));
+  }
 
   function deleteGame(gameId) {
     fetch(`http://localhost:3000/games/${gameId}`, {
