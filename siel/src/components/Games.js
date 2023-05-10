@@ -11,7 +11,7 @@ function Games() {
   const [filteredGames, setFilteredGames] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/games")
+    fetch("https://gamesapi-2hk8.onrender.com/games")
       .then((response) => response.json())
       .then((data) => {
         setGames(data);
@@ -25,7 +25,7 @@ function Games() {
     setFilteredGames(filtered);
   }
  function handleAddGame(newGame) {
-    fetch("http://localhost:3000/games", {
+    fetch("https://gamesapi-2hk8.onrender.com/games", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -41,7 +41,7 @@ function Games() {
   }
 
   function deleteGame(gameId) {
-    fetch(`http://localhost:3000/games/${gameId}`, {
+    fetch(`https://gamesapi-2hk8.onrender.com/games/${gameId}`, {
       method: "DELETE",
     })
       .then((response) => response.json())

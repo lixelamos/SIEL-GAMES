@@ -26,7 +26,7 @@ function AddGame({ onAddGame }) {
 
     try {
       const response = await fetch(
-        "http://localhost:3000/games",
+        "https://gamesapi-2hk8.onrender.com/games",
         {
           method: "POST",
           headers: {
