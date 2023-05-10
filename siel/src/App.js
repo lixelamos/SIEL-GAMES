@@ -16,7 +16,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/games")
+      .get("https://gamesapi-2hk8.onrender.com/games")
       .then((response) => {
         setGames(response.data);
         setFilteredGames(response.data);
@@ -49,7 +49,7 @@ function App() {
 
   function handleAddGame(newGame) {
     axios
-      .post("http://localhost:3000/games", newGame)
+      .post("https://gamesapi-2hk8.onrender.com/games", newGame)
       .then((response) => {
         const updatedGames = [...games, response.data];
         setGames(updatedGames);

@@ -2,7 +2,7 @@ import React from "react";
 
 function DeleteGame({ home, onDelete }) {
   function handleDelete() {
-    fetch(`http://localhost:3000/games${home}`, {
+    fetch(`https://gamesapi-2hk8.onrender.com/games${home}`, {
       method: "DELETE",
     })
       .then(() => {
