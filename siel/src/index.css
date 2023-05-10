@@ -1,5 +1,5 @@
 body {
-  background-image: url('/public/assets/img3.jpeg');
+  background-image: url('../public/assets/img3.jpeg');
 }
 *{
   margin: 0;

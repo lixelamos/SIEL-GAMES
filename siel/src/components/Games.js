@@ -24,8 +24,7 @@ function Games() {
     const filtered = games.filter((game) => game[type]);
     setFilteredGames(filtered);
   }
-
-  function handleAddGame(newGame) {
+ function handleAddGame(newGame) {
     fetch("http://localhost:3000/games", {
       method: "POST",
       headers: {
@@ -59,12 +58,6 @@ function Games() {
     <div className="Games">
       <h1> SIEL Basketball Games</h1>
       <Search games={games} setFilteredGames={setFilteredGames} />
-      <div className="filters">
-        <button onClick={() => handleFilter("day")}>Filter by Day</button>
-        <button onClick={() => handleFilter("date")}>Filter by Date</button>
-        <button onClick={() => handleFilter("court")}>Filter by Court</button>
-        <button onClick={() => handleFilter("time")}>Filter by Time</button>
-      </div>
       <div className="games-container">
         {filteredGames.map((game) => (
           <GameCard key={game.gameNo} game={game} onDelete={() => deleteGame(game.gameNo)} />
